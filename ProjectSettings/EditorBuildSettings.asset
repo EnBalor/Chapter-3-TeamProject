@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/PJS/Scene/StartScene.unity
+    guid: 9c881453b795f0e40b740ea39cfc17c3
+  - enabled: 1
+    path: Assets/PJS/Scene/SelectScene.unity
+    guid: 0f7dc6f24e5537041942dfae66e91958
   m_configObjects: {}

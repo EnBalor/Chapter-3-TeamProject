@@ -3,14 +3,15 @@ using UnityEngine;
 public class DodgeMovement : MonoBehaviour
 {
     private DodgeController _controller;
+    private CharacterStatHandler _statHandler;
     private Rigidbody2D _rigidbody;
 
     private Vector2 _movementDirection = Vector2.zero;
-    private float _speed = 5f;
 
     private void Awake()
     {
         _controller = GetComponent<DodgeController>();
+        _statHandler = GetComponent<CharacterStatHandler>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -26,7 +27,7 @@ public class DodgeMovement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        direction *= _speed;
+        direction *= _statHandler.CurrentStat.speed;
         _rigidbody.velocity = direction;
     }
 

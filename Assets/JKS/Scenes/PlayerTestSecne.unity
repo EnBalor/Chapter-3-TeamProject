@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 1991765628}
   - component: {fileID: 1991765630}
   - component: {fileID: 1991765631}
+  - component: {fileID: 1991765632}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -448,6 +449,19 @@ MonoBehaviour:
     maxHealth: 10
     speed: 5
     attackSO: {fileID: 11400000, guid: 1731731f89b151543a9c947065934111, type: 2}
+--- !u!114 &1991765632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991765624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a04b3dd8b437f94ca96ebf35a374ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4471330366018569568, guid: 34bcc41c6e91f1546b4d42bc4cb7c746, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

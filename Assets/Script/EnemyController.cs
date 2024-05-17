@@ -7,11 +7,17 @@ public class EnemyController : DodgeController
     protected Transform closeTarget { get; private set; }
     GameManager gameManager;
 
-    private void Awake()
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
+    protected virtual void Start()
     {
         gameManager = GameManager.instance;
         closeTarget = gameManager.player;
     }
+
     protected virtual void FixedUpdate()
     {
         

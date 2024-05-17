@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class DodgeShooting : MonoBehaviour
 {
-    public GameObject bullet;
-
     private DodgeController _controller;
     private Vector2 aimDirection = Vector2.up;
 
@@ -41,7 +39,7 @@ public class DodgeShooting : MonoBehaviour
 
     private void CreateProjectile(AttackSO attackSO, float angle)
     {
-        GameObject obj = Instantiate(bullet);
+        GameObject obj = SpawnManager.instance.ObjectPool.SpawnFromPool(attackSO.bulletNameTag);
 
         obj.transform.position = transform.position;
         ProjectileController attackController = obj.GetComponent<ProjectileController>();

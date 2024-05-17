@@ -3,7 +3,6 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
-    private TrailRenderer _trailRenderer;
     private Rigidbody2D _rigidbody;
 
     private AttackSO _attackSO;
@@ -14,7 +13,6 @@ public class ProjectileController : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _trailRenderer = GetComponent<TrailRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -57,7 +55,6 @@ public class ProjectileController : MonoBehaviour
         this._attackSO = attackSO;
 
         UpdateProjectileSprite();
-        _trailRenderer.Clear();
         _currentDuration = 0;
         _spriteRenderer.color = _attackSO.projectileColor;
 

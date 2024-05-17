@@ -14,10 +14,10 @@ public class DodgeAimRotation : MonoBehaviour
 
     private void Start()
     {
-        _controller.OnLookEvent += OnAim;
+        _controller.OnLookEvent += Look;
     }
 
-    private void OnAim(Vector2 direction)
+    private void Look(Vector2 direction)
     {
         RotateCharacter(direction);
     }

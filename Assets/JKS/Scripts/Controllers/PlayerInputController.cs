@@ -3,6 +3,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : DodgeController
 {
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     public void OnMove(InputValue value)
     {
         Vector2 moveInput = value.Get<Vector2>().normalized;
@@ -19,8 +24,8 @@ public class PlayerInputController : DodgeController
         CallLookEvent(aimDirection);
     }
 
-    //public void OnAttack(InputValue value)
-    //{
-
-    //}
+    public void OnAttack(InputValue value)
+    {
+        IsAttacking = value.isPressed;
+    }
 }

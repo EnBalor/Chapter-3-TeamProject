@@ -5,7 +5,7 @@ public class ProjectileController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody;
 
-    private AttackSO _attackSO;
+    private CharacterStat _currentStat;
     private Vector2 _direction;
     private float _currentDuration;
     private bool _isReady;
@@ -25,18 +25,18 @@ public class ProjectileController : MonoBehaviour
 
         _currentDuration += Time.deltaTime;
 
-        if (_currentDuration > _attackSO.duration)
+        if (_currentDuration > _currentStat.duration)
         {
             DestroyProjectile();
         }
 
-        _rigidbody.velocity = _direction * _attackSO.speed;
+        _rigidbody.velocity = _direction * _currentStat.attackSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // _attackData.target에 포함되는 레이어인지 확인
-        if (IsLayerMatched(_attackSO.target.value, collision.gameObject.layer))
+        // currentStat.target에 포함되는 레이어인지 확인
+        if (IsLayerMatched(_currentStat.target.value, collision.gameObject.layer))
         {
             // TODO: HealthSystem
             DestroyProjectile();
@@ -49,14 +49,14 @@ public class ProjectileController : MonoBehaviour
         return layerMask == (layerMask | (1 << objectLayer));
     }
 
-    public void InitializeAttack(Vector2 direction, AttackSO attackSO)
+    public void InitializeAttack(Vector2 direction, CharacterStat currentStat)
     {
         this._direction = direction;
-        this._attackSO = attackSO;
+        this._currentStat = currentStat;
 
         UpdateProjectileSprite();
         _currentDuration = 0;
-        _spriteRenderer.color = _attackSO.projectileColor;
+        _spriteRenderer.color = _currentStat.projectileColor;
 
         transform.right = this._direction;
 
@@ -65,7 +65,7 @@ public class ProjectileController : MonoBehaviour
 
     private void UpdateProjectileSprite()
     {
-        transform.localScale = Vector3.one * _attackSO.size;
+        transform.localScale = Vector3.one * _currentStat.size;
     }
 
     private void DestroyProjectile()

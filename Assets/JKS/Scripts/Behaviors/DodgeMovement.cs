@@ -27,7 +27,7 @@ public class DodgeMovement : MonoBehaviour
 
     private void ApplyMovement(Vector2 direction)
     {
-        direction *= _statHandler.CurrentStat.speed;
+        direction *= _statHandler.currentStat.speed;
         _rigidbody.velocity = direction;
     }
 

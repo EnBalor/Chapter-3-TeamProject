@@ -2,33 +2,42 @@ using UnityEngine;
 
 public class CharacterStatHandler : MonoBehaviour
 {
-    public CharacterStat CurrentStat { get; private set; }
+    public CharacterStat currentStat;
+    public StatSO[] attackData;
     public Sprite[] characterSprites;
 
-    [SerializeField] private CharacterStat baseStat;
-    private SpriteRenderer characterSprite;
+    private SpriteRenderer _characterSprite;
 
     private void Awake()
     {
-        characterSprite = GetComponentInChildren<SpriteRenderer>();
-        UpdateCharacterStat();
+        _characterSprite = GetComponentInChildren<SpriteRenderer>();
+        InitializeCharacter();
     }
 
-    private void UpdateCharacterStat()
+    private void InitializeCharacter()
     {
         // TODO: DataManager에서 idx 받아오기
-        int idx = 1;
-        characterSprite.sprite = characterSprites[idx];
+        int idx = 0;
+        _characterSprite.sprite = characterSprites[idx];
+        StatSO statSO = attackData[idx];
 
-        AttackSO attackSO = null;
-
-        if (baseStat.attackSO != null)
+        currentStat = new CharacterStat
         {
-            attackSO = Instantiate(baseStat.attackSO);
-        }
+            health = statSO.health,
+            speed = statSO.speed,
 
-        CurrentStat = new CharacterStat { attackSO = attackSO };
-        CurrentStat.maxHealth = baseStat.maxHealth;
-        CurrentStat.speed = baseStat.speed;
+            attackDelay = statSO.attackDelay,
+            attackPower = statSO.attackPower,
+            attackSpeed = statSO.attackSpeed,
+            target = statSO.target,
+
+            nameTag = statSO.nameTag,
+            size = statSO.size,
+            duration = statSO.duration,
+            spread = statSO.spread,
+            numberOfProjectiles = statSO.numberOfProjectiles,
+            projectilesAngle = statSO.projectilesAngle,
+            projectileColor = statSO.projectileColor
+        };
     }
 }

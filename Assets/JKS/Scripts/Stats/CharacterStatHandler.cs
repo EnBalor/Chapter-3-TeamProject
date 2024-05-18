@@ -17,7 +17,7 @@ public class CharacterStatHandler : MonoBehaviour
     private void InitializeCharacter()
     {
         // TODO: DataManager에서 idx 받아오기
-        int idx = 0;
+        int idx = 2;
         _characterSprite.sprite = characterSprites[idx];
         StatSO statSO = attackData[idx];
 

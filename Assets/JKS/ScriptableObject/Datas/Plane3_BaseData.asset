@@ -16,7 +16,7 @@ MonoBehaviour:
   speed: 2.5
   attackDelay: 0.15
   attackPower: 1
-  attackSpeed: 2.5
+  attackSpeed: 5
   target:
     serializedVersion: 2
     m_Bits: 128

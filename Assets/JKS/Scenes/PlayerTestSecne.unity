@@ -416,6 +416,9 @@ GameObject:
   - component: {fileID: 738406615}
   - component: {fileID: 738406614}
   - component: {fileID: 738406613}
+  - component: {fileID: 738406618}
+  - component: {fileID: 738406617}
+  - component: {fileID: 738406616}
   m_Layer: 7
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -511,6 +514,46 @@ Transform:
   - {fileID: 1563083370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &738406616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738406612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fae80260f7671244b1f5053ed312339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &738406617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738406612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d1ebae983efb6448fe047dd56fdbd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &738406618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738406612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f221833b67dbf46b322991432fd3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackData:
+  - {fileID: 11400000, guid: c9c130e1802db7e42b4b711bc32a4543, type: 2}
+  characterSprites:
+  - {fileID: 21300000, guid: 228624b4f507b414887738b271ba0cba, type: 3}
 --- !u!1 &769244452
 GameObject:
   m_ObjectHideFlags: 0

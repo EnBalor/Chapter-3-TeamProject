@@ -47,7 +47,13 @@ public class ProjectileController : MonoBehaviour
     {
         if (IsLayerMatched(_currentStat.target.value, collision.gameObject.layer))
         {
-            // TODO: HealthSystem
+            HealthSystem healthSystem = collision.GetComponent<HealthSystem>();
+
+            if (healthSystem != null)
+            {
+                healthSystem.ChangeHealth(-(_currentStat.attackPower));
+            }
+
             DestroyProjectile(true);
         }
     }

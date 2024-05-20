@@ -5,7 +5,7 @@ public class DodgeController : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnLookEvent;
-    public event Action<AttackSO> OnAttackEvent;
+    public event Action<CharacterStat> OnAttackEvent;
 
     protected CharacterStatHandler statHandler;
 
@@ -32,22 +32,22 @@ public class DodgeController : MonoBehaviour
         OnLookEvent?.Invoke(direction);
     }
 
-    public void CallAttackEvent(AttackSO attackSO)
+    public void CallAttackEvent(CharacterStat currentStat)
     {
-        OnAttackEvent?.Invoke(attackSO);
+        OnAttackEvent?.Invoke(currentStat);
     }
 
     private void HandleAttackDelay()
     {
-        if (_timeSinceLastAttack <= statHandler.CurrentStat.attackSO.delay)
+        if (_timeSinceLastAttack <= statHandler.currentStat.attackDelay)
         {
             _timeSinceLastAttack += Time.deltaTime;
         }
 
-        if (IsAttacking && _timeSinceLastAttack > statHandler.CurrentStat.attackSO.delay)
+        if (IsAttacking && _timeSinceLastAttack > statHandler.currentStat.attackDelay)
         {
             _timeSinceLastAttack = 0f;
-            CallAttackEvent(statHandler.CurrentStat.attackSO);
+            CallAttackEvent(statHandler.currentStat);
         }
     }
 }

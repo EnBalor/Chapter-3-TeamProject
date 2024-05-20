@@ -3,7 +3,7 @@ using UnityEngine;
 public class DodgeShooting : MonoBehaviour
 {
     private DodgeController _controller;
-    private Vector2 aimDirection = Vector2.up;
+    private Vector2 _aimDirection = Vector2.up;
 
     private void Awake()
     {
@@ -18,32 +18,32 @@ public class DodgeShooting : MonoBehaviour
 
     private void OnAim(Vector2 direction)
     {
-        aimDirection = direction;
+        _aimDirection = direction;
     }
 
-    private void OnShoot(AttackSO attackSO)
+    private void OnShoot(CharacterStat currentStat)
     {
-        float projectilesAngleSpace = attackSO.multipleProjectilesAngel;
-        int numberOfProjectilesPerShot = attackSO.numberofProjectilesPerShot;
+        float projectilesAngleSpace = currentStat.projectilesAngle;
+        int numberOfProjectilesPerShot = currentStat.numberOfProjectiles;
 
-        float minAngle = -(numberOfProjectilesPerShot / 2f) * projectilesAngleSpace + 0.5f * attackSO.multipleProjectilesAngel;
+        float minAngle = -(numberOfProjectilesPerShot / 2f) * projectilesAngleSpace + 0.5f * currentStat.projectilesAngle;
 
         for (int i = 0; i < numberOfProjectilesPerShot; i++)
         {
             float angle = minAngle + projectilesAngleSpace * i;
-            float randomSpread = Random.Range(-attackSO.spread, attackSO.spread);
+            float randomSpread = Random.Range(-currentStat.spread, currentStat.spread);
             angle += randomSpread;
-            CreateProjectile(attackSO, angle);
+            CreateProjectile(currentStat, angle);
         }
     }
 
-    private void CreateProjectile(AttackSO attackSO, float angle)
+    private void CreateProjectile(CharacterStat currentStat, float angle)
     {
-        GameObject obj = SpawnManager.instance.ObjectPool.SpawnFromPool(attackSO.bulletNameTag);
+        GameObject obj = SpawnManager.instance.ObjectPool.SpawnFromPool(currentStat.nameTag);
 
         obj.transform.position = transform.position;
         ProjectileController attackController = obj.GetComponent<ProjectileController>();
-        attackController.InitializeAttack(RotateVector2(aimDirection, angle), attackSO);
+        attackController.InitializeAttack(RotateVector2(_aimDirection, angle), currentStat);
     }
 
     private static Vector2 RotateVector2(Vector2 v, float angle)

@@ -18,7 +18,7 @@ public class EnemyRangeController : EnemyController
         base.Start();
 
         layerMaskLevel = LayerMask.NameToLayer("Level");
-        layermaskTarget = statHandler.CurrentStat.attackSO.target;
+        layermaskTarget = statHandler.currentStat.target;
         dirTarget = DirTarget();
     }
 

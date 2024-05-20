@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class EnemyRangeController : EnemyController
 {
-    [SerializeField][Range(0f, 100f)] private float followRange = 15f;
     [SerializeField][Range(0f, 100f)] private float shootRange = 10f;
 
     private int layerMaskLevel;
     private int layermaskTarget;
+
+    Vector2 dirTarget;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -18,34 +19,35 @@ public class EnemyRangeController : EnemyController
 
         layerMaskLevel = LayerMask.NameToLayer("Level");
         layermaskTarget = statHandler.CurrentStat.attackSO.target;
+        dirTarget = DirTarget();
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
         float distanceTarget = DistanceTarget();
-        Vector2 dirTarget = DirTarget();
 
-        EnemyState(distanceTarget, dirTarget);
+        CallMoveEvent(dirTarget);
+        CallLookEvent(dirTarget);
+        EnemyState(distanceTarget);
     }
 
-    private void EnemyState(float distanceTarget, Vector2 dirTarget)
+    private void EnemyState(float distanceTarget)
     {
         IsAttacking = false;
-        CheckNear(distanceTarget, dirTarget);
+        CheckNear(distanceTarget);
     }
-
-    private void CheckNear(float distnace, Vector2 dir)
+    
+    private void CheckNear(float distnace)
     {
         if (distnace <= shootRange)
         {
-            ShootTarget(dir);
+            ShootTarget(dirTarget);
         }
 
-        else
+        if (transform.position.x < -10f || transform.position.x > 10f || transform.position.y > 6f || transform.position.y < -6f)
         {
-            CallMoveEvent(dir);
-            CallLookEvent(dir);
+            //Destroy(gameObject);
         }
     }
 
@@ -57,17 +59,11 @@ public class EnemyRangeController : EnemyController
         {
             AttackAction(dir);
         }
-
-        else
-        {
-            CallMoveEvent(dir);
-            CallLookEvent(dir);
-        }
     }
 
     private int GetLayerMaskRaycast()
     {
-        return (1 << layermaskTarget | layermaskTarget);
+        return layermaskTarget;
     }
 
     private bool isTargetHit(RaycastHit2D hit)
@@ -77,8 +73,6 @@ public class EnemyRangeController : EnemyController
 
     private void AttackAction(Vector2 dir)
     {
-        CallLookEvent(dir);
-        CallMoveEvent(Vector2.zero);
         IsAttacking = true;
     }
 }
